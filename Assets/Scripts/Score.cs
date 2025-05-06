@@ -53,7 +53,7 @@ public class Score : MonoBehaviour
     }
     public int GetCurrentScore() 
     {
-        reutn score;
+        return score;
     }
 }
 

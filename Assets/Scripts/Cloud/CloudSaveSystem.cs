@@ -33,14 +33,13 @@ public class CloudSaveSystem : MonoBehaviour
     private List<PlayerScore> leaderboard = new List<PlayerScore>();
     private const string leaderboardKey = "leaderboard";
     public static CloudSaveSystem Instance;
-    private const string leaderboardKey = "Leaderboard";
     
     private async void Awake() 
     {
         if (Instance == null) 
         {
             Instance = this;
-            DontDestroyOnLoad(GameObject);
+            DontDestroyOnLoad(gameObject);
             InitializeUnityServices();
         }
         else Destroy(gameObject);
@@ -51,14 +50,12 @@ public class CloudSaveSystem : MonoBehaviour
         // Deshabilitar botones hasta que se inicialice
         saveButton.interactable = false;
         loadButton.interactable = false;
-        
-        // Inicializar Unity Gaming Services
-        await InitializeUnityServices();
     }
     
     private async void InitializeUnityServices()
     {
         await UnityServices.InitializeAsync();
+        isInitialized = true;
         Debug.Log("Unity Services Initialized");
     }
     //Guardar nuevo puntaje
@@ -156,12 +153,12 @@ public class CloudSaveSystem : MonoBehaviour
     {
         public List<PlayerScore> scores;
     }
-    public void TryAddNewScore(int newScore, string newPlayerName) 
+    public async void TryAddNewScore(int newScore, string newPlayerName) 
     {
-        playerScores.Add(new PlayerScore { playerName = newPlayerName, score = newScore} );
-        playerScores.Sort((a, b) => b.score.CompareTo(a.score));
-        if (playerScores.Count > 5) playerScores.RemoveAt(playerScores.Count - 1);
-        SaveLeaderboard();
+        leaderboard.Add(new PlayerScore { playerName = newPlayerName, score = newScore} );
+        leaderboard.Sort((a, b) => b.score.CompareTo(a.score));
+        if (leaderboard.Count > 5) leaderboard.RemoveAt(leaderboard.Count - 1);
+        await SaveLeaderboard();
     }
 
 
@@ -324,7 +321,7 @@ public class CloudSaveSystem : MonoBehaviour
     {
         PlayerScoreList scoreList = new PlayerScoreList { scores = scores };
         string jsonString = JsonUtility.ToJson(scoreList);
-        await CloudSaveService.Instance.Data.ForceSaveAsync(new Dictionary<string, object> 
+        await CloudSaveService.Instance.Data.Player.SaveAsync(new Dictionary<string, object> 
         {
             { leaderboardKey, jsonString }
         });
@@ -339,7 +336,7 @@ public class CloudSaveSystem : MonoBehaviour
             string jsonString = cloudData.Value.GetAs<string>();
             PlayerScoreList scoreList = JsonUtility.FromJson<PlayerScoreList>(jsonString);
             Debug.Log("Scores loaded from Cloud Save");
-            return scoreList.scores;
+            return new List<PlayerScore>();
         }
         else 
         {
