@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject gameoverCanvas;
+    public Score score;
     void Start() 
     {
         Time.timeScale = 1;
@@ -16,10 +17,12 @@ public class GameManager : MonoBehaviour
     }
     public void Restart() 
     {
+        score.EndGame();
         SceneManager.LoadScene(1);
     }
     public void MainMenu() 
     {
+        score.EndGame();
         SceneManager.LoadScene(0);
     }
 }

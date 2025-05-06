@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -15,6 +17,8 @@ public class CloudSaveSystem : MonoBehaviour
     public Text syncStatusText;
     public Button saveButton;
     public Button loadButton;
+
+    public Text rankingText;
     
     // Datos del jugador
     private string playerName = "Player";
@@ -25,6 +29,9 @@ public class CloudSaveSystem : MonoBehaviour
     private bool isInitialized = false;
     private bool isSaving = false;
     private bool isLoading = false;
+
+    private List<PlayerScore> leaderboard = new List<PlayerScore>();
+    private const string leaderboardKey = "leaderboard";
     
     async void Start()
     {
@@ -68,7 +75,104 @@ public class CloudSaveSystem : MonoBehaviour
             Debug.LogError("Error al inicializar Unity Services: " + ex);
         }
     }
-    
+    //Guardar nuevo puntaje
+    public async void SaveNewScore(int newScore) 
+    {
+        if (string.IsNullOrEmpty(playerNameInput.text)) 
+        {
+            syncStatusText.text = "¡Nombre de jugador requerido!";
+            return;
+        }
+        string playerName = playerNameInput.text;
+        //Agregar nuevo puntaje
+        leaderboard.Add(new PlayerScore(playerName, newScore));
+        //Ordenar y mantener solo top 5
+        leaderboard = leaderboard.OrderByDescending(p => p.score).Take(5).ToList();
+        await SaveLeaderboard();
+        DisplayLeaderboard();
+    }
+    //Guardar la lista en la nube
+    private async Task SaveLeaderboard() 
+    {
+        if (!isInitialized || isSaving) return;
+        isSaving = true;
+        syncStatusText.text = "Guardando ranking...";
+        try 
+        {
+            //Serializar lista a JSON
+            string jsonData = JsonUtility.ToJson(new PlayerScoreListWrapper { scores = leaderboard });
+            var data = new Dictionary<string, object> { { leaderboardKey, jsonData } };
+            await CloudSaveService.Instance.Data.Player.SaveAsync(data);
+            syncStatusText.text = "¡Ranking guardado!";
+            Debug.Log("Leaderboard guardado.");
+        }
+        catch (Exception ex) 
+        {
+            syncStatusText.text = "Error al guardar: " + ex.Message;
+            Debug.LogError("Error al guardar leaderboard: " + ex);
+        }
+        finally 
+        {
+            isSaving = false;
+        }
+    }
+
+    //Cargar la lista de la nube
+    public async void LoadLeaderboardButton() 
+    {
+        await LoadLeaderboard();
+        DisplayLeaderboard();
+    }
+
+    private async Task LoadLeaderboard() 
+    {
+        if (!isInitialized || isLoading) return;
+        isLoading = true;
+        syncStatusText.text = "Cargando ranking...";
+        try 
+        {
+            var keys = new HashSet<string> { leaderboardKey };
+            var data = await CloudSaveService.Instance.Data.Player.LoadAsync(keys);
+            if (data.TryGetValue(leaderboardKey, out var leaderboardValue)) 
+            {
+                string jsonData = leaderboardValue.Value.GetAs<string>();
+                //Deserializar JSON
+                PlayerScoreListWrapper wrapper = JsonUtility.FromJson<PlayerScoreListWrapper>(jsonData);
+                leaderboard = wrapper?.scores ?? new List<PlayerScore>();
+                syncStatusText.text = "Ranking cargado.";
+                Debug.Log("Leaderboard cargado.");
+            }
+        }
+        catch (Exception ex) 
+        {
+            syncStatusText.text = "Error al cargar: " + ex.Message;
+            Debug.LogError("Error al cargar leaderboard: "+ ex);
+        }
+        finally 
+        {
+            isLoading = false;
+        }
+    }
+    //Mostrar ranking en pantalla
+    private void DisplayLeaderboard() 
+    {
+        rankingText.text = "Top 5:\n";
+        int rank = 1;
+        foreach (var entry in leaderboard)
+        {
+            rankingText.text += $"{rank}. {entry.playerName} - {entry.score}\n";
+            rank++;
+        }
+    }
+    //Wrapper para serializar listas con JsonUtility 
+    [Serializable]
+    private class PlayerScoreListWrapper 
+    {
+        public List<PlayerScore> scores;
+    }
+
+
+
     // Método para guardar datos
     public async void SaveGameDataButton()
     {
