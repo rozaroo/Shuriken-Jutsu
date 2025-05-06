@@ -170,6 +170,13 @@ public class CloudSaveSystem : MonoBehaviour
     {
         public List<PlayerScore> scores;
     }
+    public void TryAddNewScore(int newScore, string newPlayerName) 
+    {
+        playerScores.Add(new PlayerScore { playerName = newPlayerName, score = newScore} );
+        playerScores.Sort((a, b) => b.score.CompareTo(a.score));
+        if (playerScores.Count > 5) playerScores.RemoveAt(playerScores.Count - 1);
+        SaveLeaderboard();
+    }
 
 
 

@@ -46,5 +46,10 @@ public class Score : MonoBehaviour
             Debug.LogWarning("No se encontro el CloudSaveSystem en la escena.");
         }
     }
+    public void SaveScoreWithName(string playerName) 
+    {
+        UpdateBestScore();
+        FindAnyObjectByType<CloudSaveSystem>().TryAddNewScore(score, playerName);
+    }
 }
 
