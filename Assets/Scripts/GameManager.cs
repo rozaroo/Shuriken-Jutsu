@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     {
         gameoverCanvas.SetActive(true);
         Time.timeScale = 0;
-        string playerName = playerNameInput;
+        string playerName = playerNameInput.text;
         int currentScore = score.GetCurrentScore();
         await CloudSaveSystem.Instance.AddNewScore(playerName, currentScore);
     }
