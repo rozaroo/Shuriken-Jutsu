@@ -32,7 +32,20 @@ public class CloudSaveSystem : MonoBehaviour
 
     private List<PlayerScore> leaderboard = new List<PlayerScore>();
     private const string leaderboardKey = "leaderboard";
+    public static CloudSaveSystem Instance;
+    private const string leaderboardKey = "Leaderboard";
     
+    private async void Awake() 
+    {
+        if (Instance == null) 
+        {
+            Instance = this;
+            DontDestroyOnLoad(GameObject);
+            InitializeUnityServices();
+        }
+        else Destroy(gameObject);
+    }
+
     async void Start()
     {
         // Deshabilitar botones hasta que se inicialice
@@ -43,37 +56,10 @@ public class CloudSaveSystem : MonoBehaviour
         await InitializeUnityServices();
     }
     
-    private async Task InitializeUnityServices()
+    private async void InitializeUnityServices()
     {
-        try
-        {
-            syncStatusText.text = "Inicializando...";
-            
-            // Inicializar Unity Services
-            await UnityServices.InitializeAsync();
-            
-            // Iniciar sesión con autenticación anónima
-            if (!AuthenticationService.Instance.IsSignedIn)
-            {
-                await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            }
-            
-            syncStatusText.text = "Conectado como: " + AuthenticationService.Instance.PlayerId;
-            Debug.Log("Iniciado sesión con ID: " + AuthenticationService.Instance.PlayerId);
-            
-            // Habilitar botones después de inicializar
-            saveButton.interactable = true;
-            loadButton.interactable = true;
-            isInitialized = true;
-            
-            // Cargar datos automáticamente al iniciar
-            await LoadGameData();
-        }
-        catch (System.Exception ex)
-        {
-            syncStatusText.text = "Error al inicializar: " + ex.Message;
-            Debug.LogError("Error al inicializar Unity Services: " + ex);
-        }
+        await UnityServices.InitializeAsync();
+        Debug.Log("Unity Services Initialized");
     }
     //Guardar nuevo puntaje
     public async void SaveNewScore(int newScore) 
@@ -328,5 +314,49 @@ public class CloudSaveSystem : MonoBehaviour
             syncStatusText.text = "Error al eliminar: " + ex.Message;
             Debug.LogError("Error al eliminar datos: " + ex);
         }
+    }
+    [Serializable]
+    public class PlayerScoreList 
+    {
+        public List<PlayerScore> scores = new List<PlayerScore>();
+    }
+    public async Task SaveScores(List<PlayerScore> scores) 
+    {
+        PlayerScoreList scoreList = new PlayerScoreList { scores = scores };
+        string jsonString = JsonUtility.ToJson(scoreList);
+        await CloudSaveService.Instance.Data.ForceSaveAsync(new Dictionary<string, object> 
+        {
+            { leaderboardKey, jsonString }
+        });
+        Debug.Log("Scores saved to Cloud Save");
+    }
+    //Cargar lista de puntajes desde la nube
+    public async Task<List<PlayerScore>> LoadScores() 
+    {
+        var saveData = await CloudSaveService.Instance.Data.LoadAsync(new HashSet<string>{ leaderboardKey });
+        if (saveData.TryGetValue(leaderboardKey, out var cloudData)) 
+        {
+            string jsonString = cloudData.Value.GetAs<string>();
+            PlayerScoreList scoreList = JsonUtility.FromJson<PlayerScoreList>(jsonString);
+            Debug.Log("Scores loaded from Cloud Save");
+            return scoreList.scores;
+        }
+        else 
+        {
+            Debug.Log("No scores found in Cloud Save");
+            return new List<PlayerScore>();
+        }
+    }
+    public async Task AddNewScore(string playerName, int score) 
+    {
+        List<PlayerScore> currentScores = await LoadScores();
+        PlayerScore newScore = new PlayerScore 
+        {
+            playerName = playerName,
+            score = score
+        };
+        currentScores.Add(newScore);
+        currentScores = currentScores.OrderByDescending(ps => ps.score).ToList();
+        await SaveScores(currentScores);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Threading.Tasks;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,7 +18,9 @@ public class GameManager : MonoBehaviour
     {
         gameoverCanvas.SetActive(true);
         Time.timeScale = 0;
-        score.SaveScoreWithName(playerNameInput.text);
+        string playerName = playerNameInput;
+        int currentScore = score.GetCurrentScore();
+        await CloudSaveSystem.Instance.AddNewScore(playerName, currentScore);
     }
     public void Restart() 
     {

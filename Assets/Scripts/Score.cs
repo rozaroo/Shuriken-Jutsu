@@ -49,7 +49,11 @@ public class Score : MonoBehaviour
     public void SaveScoreWithName(string playerName) 
     {
         UpdateBestScore();
-        FindAnyObjectByType<CloudSaveSystem>().TryAddNewScore(score, playerName);
+        await CloudSaveSystem.Instance.AddNewScore("PlayerName", playerScore);
+    }
+    public int GetCurrentScore() 
+    {
+        reutn score;
     }
 }
 
