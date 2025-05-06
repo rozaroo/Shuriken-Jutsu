@@ -55,6 +55,11 @@ public class CloudSaveSystem : MonoBehaviour
     private async void InitializeUnityServices()
     {
         await UnityServices.InitializeAsync();
+        if (!AuthenticationService.Instance.IsSignedIn) 
+        {
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            Debug.Log("Signed in anonymously");
+        }
         isInitialized = true;
         Debug.Log("Unity Services Initialized");
     }
@@ -336,7 +341,7 @@ public class CloudSaveSystem : MonoBehaviour
             string jsonString = cloudData.Value.GetAs<string>();
             PlayerScoreList scoreList = JsonUtility.FromJson<PlayerScoreList>(jsonString);
             Debug.Log("Scores loaded from Cloud Save");
-            return new List<PlayerScore>();
+            return scoreList.scores;
         }
         else 
         {
