@@ -1276,8 +1276,6 @@ MonoBehaviour:
   scoreText: {fileID: 1696268619}
   levelText: {fileID: 1146399830}
   syncStatusText: {fileID: 1145887990}
-  saveButton: {fileID: 25895008}
-  loadButton: {fileID: 1404084903}
   rankingText: {fileID: 1965581406}
 --- !u!4 &688916014
 Transform:
@@ -1417,6 +1415,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1696268619}
   bestScoreText: {fileID: 178257244}
+  cloudSave: {fileID: 688916013}
+  score: 0
 --- !u!1 &778635574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1509,7 +1509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1145887988
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1643,7 +1643,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1146399828
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2470,7 +2470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1965581406
 MonoBehaviour:
   m_ObjectHideFlags: 0

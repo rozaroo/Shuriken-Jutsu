@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     void Start() 
     {
         Time.timeScale = 1;
+        PlayerPrefs.GetInt("BestScore", 0).ToString();
     }
     public async Task GameOver() 
     {
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
     }
     public void Restart() 
     {
-        score.EndGame();
+        //score.EndGame();
         SceneManager.LoadScene(1);
     }
     public void MainMenu() 

@@ -151,9 +151,9 @@ public class CloudSaveSystem : MonoBehaviour
     {
         public List<PlayerScore> scores;
     }
-    public async void TryAddNewScore(int newScore, string newPlayerName) 
+    public async Task AddNewScore(string newPlayerName, int newScore) 
     {
-        leaderboard.Add(new PlayerScore (playerName = newPlayerName, score = newScore));
+        leaderboard.Add(new PlayerScore (newPlayerName, newScore));
         leaderboard.Sort((a, b) => b.score.CompareTo(a.score));
         if (leaderboard.Count > 5) leaderboard.RemoveAt(leaderboard.Count - 1);
         await SaveLeaderboard();
@@ -317,7 +317,7 @@ public class CloudSaveSystem : MonoBehaviour
             Debug.Log("No scores found in Cloud Save");
             return new List<PlayerScore>();
         }
-    }
+    }/*
     public async Task AddNewScore(string playerName, int score) 
     {
         List<PlayerScore> currentScores = await LoadScores();
@@ -325,5 +325,5 @@ public class CloudSaveSystem : MonoBehaviour
         currentScores.Add(newScore);
         currentScores = currentScores.OrderByDescending(ps => ps.score).ToList();
         await SaveScores(currentScores);
-    }
+    }*/
 }

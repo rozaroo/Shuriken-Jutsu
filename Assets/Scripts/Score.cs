@@ -8,7 +8,8 @@ public class Score : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI bestScoreText;
-    private int score;
+    public CloudSaveSystem cloudSave;
+    public int score;
     void Start() 
     {
         scoreText.text = score.ToString();
@@ -16,15 +17,18 @@ public class Score : MonoBehaviour
     }
     public void UpdateBestScore() 
     {
-        if (score > PlayerPrefs.GetInt("BestScore",0)) 
+        int bestScore = PlayerPrefs.GetInt("BestScore", 0);
+        if (score > bestScore) 
         {
             PlayerPrefs.SetInt("BestScore",score);
             bestScoreText.text = score.ToString();
+            cloudSave.SaveNewScore(score);
         }
     }
     public void UpdateScore() 
     {
-        score++;
+        score += 20;
+        //score++;
         scoreText.text = score.ToString();
         UpdateBestScore();
     }
@@ -32,7 +36,6 @@ public class Score : MonoBehaviour
     public void EndGame() 
     {
         Debug.Log("Juego terminado. Puntaje: "+ score);
-        CloudSaveSystem cloudSave = FindObjectOfType<CloudSaveSystem>();
         if (cloudSave != null) 
         {
             if (string.IsNullOrEmpty(cloudSave.playerNameInput.text)) 
@@ -40,7 +43,9 @@ public class Score : MonoBehaviour
                 Debug.Log("Por favor ingresar tu nombre antes de guardar el score");
                 return;
             }
-            cloudSave.SaveNewScore(score);
+            UpdateBestScore();
+            int bestScore = PlayerPrefs.GetInt("BestScore", 0);
+            if (score >= bestScore) cloudSave.SaveNewScore(score);
         }
         else 
         {
