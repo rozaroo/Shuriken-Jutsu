@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
     }
-    public void GameOver() 
+    public async Task GameOver() 
     {
         gameoverCanvas.SetActive(true);
         Time.timeScale = 0;

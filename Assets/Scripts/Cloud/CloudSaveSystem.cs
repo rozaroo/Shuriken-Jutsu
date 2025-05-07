@@ -7,18 +7,17 @@ using UnityEngine.UI;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
+using TMPro;
 
 public class CloudSaveSystem : MonoBehaviour
 {
     [Header("UI References")]
-    public InputField playerNameInput;
-    public Text scoreText;
-    public Text levelText;
-    public Text syncStatusText;
-    public Button saveButton;
-    public Button loadButton;
+    public TMP_InputField playerNameInput;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI levelText;
+    public TextMeshProUGUI syncStatusText;
 
-    public Text rankingText;
+    public TextMeshProUGUI rankingText;
     
     // Datos del jugador
     private string playerName = "Player";
@@ -36,22 +35,16 @@ public class CloudSaveSystem : MonoBehaviour
     
     private async void Awake() 
     {
-        if (Instance == null) 
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            InitializeUnityServices();
-        }
-        else Destroy(gameObject);
+        InitializeUnityServices();
+        //if (Instance == null) 
+        //{
+         //   Instance = this;
+            //DontDestroyOnLoad(gameObject);
+            //InitializeUnityServices();
+        //}
+        //else Destroy(gameObject);
     }
 
-    async void Start()
-    {
-        // Deshabilitar botones hasta que se inicialice
-        saveButton.interactable = false;
-        loadButton.interactable = false;
-    }
-    
     private async void InitializeUnityServices()
     {
         await UnityServices.InitializeAsync();
@@ -160,7 +153,7 @@ public class CloudSaveSystem : MonoBehaviour
     }
     public async void TryAddNewScore(int newScore, string newPlayerName) 
     {
-        leaderboard.Add(new PlayerScore { playerName = newPlayerName, score = newScore} );
+        leaderboard.Add(new PlayerScore (playerName = newPlayerName, score = newScore));
         leaderboard.Sort((a, b) => b.score.CompareTo(a.score));
         if (leaderboard.Count > 5) leaderboard.RemoveAt(leaderboard.Count - 1);
         await SaveLeaderboard();
@@ -292,31 +285,7 @@ public class CloudSaveSystem : MonoBehaviour
         levelText.text = "Nivel: " + level;
     }
     
-    // Método para eliminar datos (para pruebas)
-    public async void DeleteCloudData()
-    {
-        if (!isInitialized)
-            return;
-        
-        try
-        {
-            syncStatusText.text = "Eliminando datos...";
-            
-            // Definir las claves que queremos eliminar
-            var keys = new List<string> { "playerName", "score", "level", "lastSaved" };
-            
-            // Eliminar datos de Unity Cloud Save
-            await CloudSaveService.Instance.Data.Player.DeleteAsync(keys);
-            
-            syncStatusText.text = "Datos eliminados de la nube";
-            Debug.Log("Datos eliminados correctamente");
-        }
-        catch (System.Exception ex)
-        {
-            syncStatusText.text = "Error al eliminar: " + ex.Message;
-            Debug.LogError("Error al eliminar datos: " + ex);
-        }
-    }
+ 
     [Serializable]
     public class PlayerScoreList 
     {
@@ -338,7 +307,7 @@ public class CloudSaveSystem : MonoBehaviour
         var saveData = await CloudSaveService.Instance.Data.LoadAsync(new HashSet<string>{ leaderboardKey });
         if (saveData.TryGetValue(leaderboardKey, out var cloudData)) 
         {
-            string jsonString = cloudData.Value.GetAs<string>();
+            string jsonString = cloudData.ToString();
             PlayerScoreList scoreList = JsonUtility.FromJson<PlayerScoreList>(jsonString);
             Debug.Log("Scores loaded from Cloud Save");
             return scoreList.scores;
@@ -352,11 +321,7 @@ public class CloudSaveSystem : MonoBehaviour
     public async Task AddNewScore(string playerName, int score) 
     {
         List<PlayerScore> currentScores = await LoadScores();
-        PlayerScore newScore = new PlayerScore 
-        {
-            playerName = playerName,
-            score = score
-        };
+        PlayerScore newScore = new PlayerScore(playerName = playerName, score = score);
         currentScores.Add(newScore);
         currentScores = currentScores.OrderByDescending(ps => ps.score).ToList();
         await SaveScores(currentScores);

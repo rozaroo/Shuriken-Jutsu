@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class Score : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class Score : MonoBehaviour
             Debug.LogWarning("No se encontro el CloudSaveSystem en la escena.");
         }
     }
-    public void SaveScoreWithName(string playerName) 
+    public async Task SaveScoreWithName(string playerName) 
     {
         UpdateBestScore();
         await CloudSaveSystem.Instance.AddNewScore(playerName, score);
