@@ -7,6 +7,11 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    public Score scoreManager;
+    private async void Start()
+    {
+        await scoreManager.DownloadAndShowBestScore();
+    }
     public void QuitGame()
     {
         Application.Quit();

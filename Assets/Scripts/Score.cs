@@ -14,6 +14,8 @@ public class Score : MonoBehaviour
     {
         scoreText.text = score.ToString();
         bestScoreText.text = PlayerPrefs.GetInt("BestScore",0).ToString();
+        if (scoreText == null) Debug.Log("Null");
+        if (bestScoreText == null) Debug.Log("Null");
     }
     public void UpdateBestScore() 
     {
@@ -27,8 +29,7 @@ public class Score : MonoBehaviour
     }
     public void UpdateScore() 
     {
-        score += 20;
-        //score++;
+        score++;
         scoreText.text = score.ToString();
         UpdateBestScore();
     }
@@ -60,6 +61,20 @@ public class Score : MonoBehaviour
     public int GetCurrentScore() 
     {
         return score;
+    }
+    public async Task DownloadAndShowBestScore()
+    {
+        int cloudBestScore = await CloudSaveSystem.Instance.GetBestScores();
+        int localBestScore = PlayerPrefs.GetInt("BestScore", 0);
+        if (cloudBestScore > localBestScore)
+        {
+            PlayerPrefs.SetInt("BestScore", cloudBestScore);
+            bestScoreText.text = cloudBestScore.ToString();
+        }
+        else
+        {
+            bestScoreText.text = localBestScore.ToString();
+        }
     }
 }
 

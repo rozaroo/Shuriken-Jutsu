@@ -43,6 +43,11 @@ public class CloudSaveSystem : MonoBehaviour
             //InitializeUnityServices();
         //}
         //else Destroy(gameObject);
+        if (playerNameInput == null) Debug.Log("Null");
+        if (scoreText == null) Debug.Log("Null");
+        if (levelText == null) Debug.Log("Null");
+        if (syncStatusText == null) Debug.Log("Null");
+        if (rankingText == null) Debug.Log("Null");
     }
 
     private async void InitializeUnityServices()
@@ -326,4 +331,14 @@ public class CloudSaveSystem : MonoBehaviour
         currentScores = currentScores.OrderByDescending(ps => ps.score).ToList();
         await SaveScores(currentScores);
     }*/
+    public async Task<int> GetBestScores()
+    {
+        var savedData = await CloudSaveService.Instance.Data.LoadAsync(new HashSet<string> { "BestScore" });
+        if (savedData.TryGetValue("BestScore", out var bestScoreStr))
+        {
+            int bestScore = int.Parse(bestScoreStr);
+            return bestScore;
+        }
+        else return 0;
+    }
 }
