@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using System.Threading.Tasks;
 
 public class AudioMute : MonoBehaviour
 {
@@ -14,11 +12,11 @@ public class AudioMute : MonoBehaviour
     void Start()
     {
         muted = false;
-        musicOff.SetActive(true);
     }
     public void Mute() 
     {
-        if (muted == true) 
+        muted = !muted;
+        if (muted) 
         {
             Audio.SetActive(false);
             musicOn.SetActive(false);
