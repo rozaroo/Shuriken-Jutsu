@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public Score scoreManager;
+    //public Score scoreManager;
     private async void Start()
     {
-        await scoreManager.DownloadAndShowBestScore();
+        //await scoreManager.DownloadAndShowBestScore();
     }
     public void QuitGame()
     {

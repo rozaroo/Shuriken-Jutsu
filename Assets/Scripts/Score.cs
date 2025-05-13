@@ -14,6 +14,10 @@ public class Score : MonoBehaviour
     {
         scoreText.text = score.ToString();
         bestScoreText.text = PlayerPrefs.GetInt("BestScore",0).ToString();
+        
+    }
+    void Update()
+    {
         if (scoreText == null) Debug.Log("Null");
         if (bestScoreText == null) Debug.Log("Null");
     }
