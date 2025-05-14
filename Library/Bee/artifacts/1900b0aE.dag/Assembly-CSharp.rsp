@@ -434,6 +434,8 @@
 "Assets/Scripts/Rotate.cs"
 "Assets/Scripts/Score.cs"
 "Assets/Scripts/Shuriken.cs"
+"Assets/Scripts/ShurikenData.cs"
+"Assets/Scripts/ShurikenSelector.cs"
 "Assets/Scripts/Trunk.cs"
 "Assets/Scripts/TrunkScore.cs"
 "Assets/Scripts/TrunkSpawner.cs"

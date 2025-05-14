@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\Audio\spatial-audio-source.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\AutoPerfControl.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\Scaler\IndexerVisualisation.cs" />
+    <Compile Include="Assets\Scripts\ShurikenData.cs" />
     <Compile Include="Assets\Scripts\Shuriken.cs" />
     <Compile Include="Assets\Scripts\Audio\SimpleProceduralAudio.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\TestSequence.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Assets\Scripts\AudioMute.cs" />
     <Compile Include="Assets\Scripts\LogicaVolumen.cs" />
     <Compile Include="Assets\Scripts\Audio\audio-button.cs" />
+    <Compile Include="Assets\Scripts\ShurikenSelector.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\AutoPerfUI.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\MidLevelLoadManager.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\Blockwall\ObjectSpawner.cs" />

@@ -7,9 +7,17 @@ public class Shuriken : MonoBehaviour
     private float velocity = 2;
     private Rigidbody2D rb2D;
     public AudioSource audioSource;
+    public Sprite[] availableSprites;
     void Start() 
     {
         rb2D = GetComponent<Rigidbody2D>();
+        Transform spriteChild = transform.Find("ShurikenSprite");
+        if (spriteChild != null && ShurikenData.Instance != null) 
+        {
+            int index = ShurikenData.Instance.selectedShurikenIndex;
+            SpriteRenderer sr = spriteChild.GetComponent<SpriteRenderer>();
+            if (index >= 0 && index < availableSprites.Length) sr.sprite = availableSprites[index];
+        }
     }
     void Update() 
     {
