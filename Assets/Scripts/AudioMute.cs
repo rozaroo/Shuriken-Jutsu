@@ -12,6 +12,7 @@ public class AudioMute : MonoBehaviour
     void Start()
     {
         muted = false;
+        Audio = GameObject.FindGameObjectWithTag("Music");
     }
     public void Mute() 
     {

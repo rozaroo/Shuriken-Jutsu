@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\TrunkSpawner.cs" />
+    <Compile Include="Assets\Scripts\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\Audio\spatial-audio-source.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\AutoPerfControl.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\Scaler\IndexerVisualisation.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\ClusterInfo\ClusterInfoTest.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\Bottleneck\BottleneckUI.cs" />
     <Compile Include="Assets\Scripts\AudioMute.cs" />
+    <Compile Include="Assets\Scripts\LogicaVolumen.cs" />
     <Compile Include="Assets\Scripts\Audio\audio-button.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\AutoPerfUI.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\MidLevelLoadManager.cs" />

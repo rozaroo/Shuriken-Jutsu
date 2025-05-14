@@ -7,10 +7,14 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    //public Score scoreManager;
+    public Score scoreManager;
+    public GameObject slider;
+    private bool showSlider;
     private async void Start()
     {
-        //await scoreManager.DownloadAndShowBestScore();
+        if (scoreManager != null) await scoreManager.DownloadAndShowBestScore();
+        else return;
+        showSlider = false;
     }
     public void QuitGame()
     {
@@ -19,5 +23,11 @@ public class MainMenuManager : MonoBehaviour
     public void Play()
     {
         SceneManager.LoadScene(1);
+    }
+    public void ShowVolumeSlider()
+    {
+        showSlider = !showSlider;
+        if (showSlider) slider.SetActive(false);
+        else slider.SetActive(true);
     }
 }
