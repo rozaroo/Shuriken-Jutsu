@@ -29,6 +29,7 @@ public class Score : MonoBehaviour
             PlayerPrefs.SetInt("BestScore",score);
             bestScoreText.text = score.ToString();
             cloudSave.SaveNewScore(score);
+            
         }
     }
     public void UpdateScore() 
@@ -50,12 +51,11 @@ public class Score : MonoBehaviour
             }
             UpdateBestScore();
             int bestScore = PlayerPrefs.GetInt("BestScore", 0);
-            if (score >= bestScore) cloudSave.SaveNewScore(score);
+            //if (score >= bestScore) cloudSave.SaveNewScore(score);
+            cloudSave.SaveNewScore(score);
+            
         }
-        else 
-        {
-            Debug.LogWarning("No se encontro el CloudSaveSystem en la escena.");
-        }
+        else Debug.LogWarning("No se encontro el CloudSaveSystem en la escena.");
     }
     public async Task SaveScoreWithName(string playerName) 
     {
@@ -75,10 +75,7 @@ public class Score : MonoBehaviour
             PlayerPrefs.SetInt("BestScore", cloudBestScore);
             bestScoreText.text = cloudBestScore.ToString();
         }
-        else
-        {
-            bestScoreText.text = localBestScore.ToString();
-        }
+        else bestScoreText.text = localBestScore.ToString();
     }
 }
 

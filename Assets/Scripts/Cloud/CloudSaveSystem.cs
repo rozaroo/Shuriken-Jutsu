@@ -2,12 +2,16 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.IO;
+using System.Text;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Services.Core;
 using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
 using TMPro;
+
 
 public class CloudSaveSystem : MonoBehaviour
 {
@@ -32,7 +36,10 @@ public class CloudSaveSystem : MonoBehaviour
     private List<PlayerScore> leaderboard = new List<PlayerScore>();
     private const string leaderboardKey = "leaderboard";
     public static CloudSaveSystem Instance;
-    
+
+    // Configuración de encriptación
+    private string secretKey = "yjd7HnM90!xpQw54";
+
     private async void Awake() 
     {
         InitializeUnityServices();
@@ -70,10 +77,14 @@ public class CloudSaveSystem : MonoBehaviour
             return;
         }
         string playerName = playerNameInput.text;
+        // Encriptar nombre y score
+        string encryptedName = Convert.ToBase64String(EncryptData(playerName, secretKey));
+        string encryptedScore = Convert.ToBase64String(EncryptData(newScore.ToString(), secretKey));
         //Agregar nuevo puntaje
-        leaderboard.Add(new PlayerScore(playerName, newScore));
+        leaderboard.Add(new PlayerScore(encryptedName, encryptedScore));
         //Ordenar y mantener solo top 5
-        leaderboard = leaderboard.OrderByDescending(p => p.score).Take(5).ToList();
+        leaderboard = leaderboard.OrderByDescending(p => int.Parse(DecryptData(Convert.FromBase64String(p.score), secretKey))).Take(5).ToList();
+        Debug.Log($"Player: {playerName} Score: {newScore}");
         await SaveLeaderboard();
         DisplayLeaderboard();
     }
@@ -146,7 +157,9 @@ public class CloudSaveSystem : MonoBehaviour
         int rank = 1;
         foreach (var entry in leaderboard)
         {
-            rankingText.text += $"{rank}. {entry.playerName} - {entry.score}\n";
+            string decryptedName = DecryptData(Convert.FromBase64String(entry.playerName), secretKey);
+            string decryptedScore = DecryptData(Convert.FromBase64String(entry.score), secretKey);
+            rankingText.text += $"{rank}. {decryptedName} - {decryptedScore}\n";
             rank++;
         }
     }
@@ -158,8 +171,10 @@ public class CloudSaveSystem : MonoBehaviour
     }
     public async Task AddNewScore(string newPlayerName, int newScore) 
     {
-        leaderboard.Add(new PlayerScore (newPlayerName, newScore));
-        leaderboard.Sort((a, b) => b.score.CompareTo(a.score));
+        string encryptedName = Convert.ToBase64String(EncryptData(newPlayerName, secretKey));
+        string encryptedScore = Convert.ToBase64String(EncryptData(newScore.ToString(), secretKey));
+        leaderboard.Add(new PlayerScore (encryptedName, encryptedScore));
+        leaderboard.Sort((a, b) => int.Parse(DecryptData(Convert.FromBase64String(b.score), secretKey)).CompareTo(int.Parse(DecryptData(Convert.FromBase64String(a.score), secretKey))));
         if (leaderboard.Count > 5) leaderboard.RemoveAt(leaderboard.Count - 1);
         await SaveLeaderboard();
     }
@@ -190,20 +205,22 @@ public class CloudSaveSystem : MonoBehaviour
         
         try
         {
-            // Crear un diccionario con los datos a guardar
+            string encryptedName = Convert.ToBase64String(EncryptData(playerName, secretKey));
+            string encryptedScore = Convert.ToBase64String(EncryptData(score.ToString(), secretKey));
+
+            // Crear un diccionario con los datos encryptados a guardar
             var playerData = new Dictionary<string, object>
             {
-                { "playerName", playerName },
-                { "score", score },
+                { "playerName", encryptedName },
+                { "score", encryptedScore },
                 { "level", level },
-                { "lastSaved", System.DateTime.UtcNow.ToString() }
+                { "lastSaved", DateTime.UtcNow.ToString() }
             };
             
             // Guardar datos en Unity Cloud Save
             await CloudSaveService.Instance.Data.Player.SaveAsync(playerData);
             
-            syncStatusText.text = "¡Datos guardados correctamente!";
-            Debug.Log("Datos guardados: " + string.Join(", ", playerData));
+            
         }
         catch (System.Exception ex)
         {
@@ -241,14 +258,20 @@ public class CloudSaveSystem : MonoBehaviour
             // Procesar los datos cargados
             if (data.TryGetValue("playerName", out var nameValue))
             {
-                playerName = nameValue.Value.GetAs<string>();
+                byte[] encryptedBytes = Convert.FromBase64String(nameValue.Value.GetAs<string>());
+                playerName = DecryptData(encryptedBytes, secretKey);
                 playerNameInput.text = playerName;
             }
             
             if (data.TryGetValue("score", out var scoreValue))
             {
-                score = scoreValue.Value.GetAs<int>();
-                scoreText.text = "Puntuación: " + score;
+                byte[] encryptedBytes = Convert.FromBase64String(scoreValue.Value.GetAs<string>());
+                string decryptedScoreStr = DecryptData(encryptedBytes, secretKey);
+                if (int.TryParse(decryptedScoreStr, out int decryptedScore)) 
+                {
+                    score = decryptedScore;
+                    scoreText.text = "Puntaje: " + score; 
+                }
             }
             
             if (data.TryGetValue("level", out var levelValue))
@@ -341,4 +364,41 @@ public class CloudSaveSystem : MonoBehaviour
         }
         else return 0;
     }
-}
+    //Encryptar
+    private byte[] EncryptData(string data, string key)
+    {
+        using (Aes aes = Aes.Create())
+        {
+            byte[] keyBytes = Encoding.UTF8.GetBytes(key);
+            using (SHA256 sha256 = SHA256.Create()) keyBytes = sha256.ComputeHash(keyBytes);
+            aes.Key = keyBytes;
+            aes.GenerateIV();
+            using (MemoryStream ms = new MemoryStream()) 
+            { 
+                ms.Write(aes.IV,0,aes.IV.Length);
+                using (CryptoStream cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                using (StreamWriter sw = new StreamWriter(cs)) sw.Write(data);
+                return ms.ToArray();
+            }
+        }
+    }
+    private string DecryptData(byte[] data, string key) 
+    {
+        using (Aes aes = Aes.Create())
+        {
+            byte[] keyBytes = Encoding.UTF8.GetBytes(key);
+            using (SHA256 sha256 = SHA256.Create()) keyBytes= sha256.ComputeHash(keyBytes);
+            aes.Key = keyBytes;
+            byte[] iv = new byte[aes.BlockSize / 8];
+            Array.Copy(data, 0, iv, 0, iv.Length);
+            aes.IV = iv;
+            try 
+            {
+                using (MemoryStream ms = new MemoryStream(data, iv.Length, data.Length - iv.Length))
+                using (CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read))
+                using (StreamReader sr = new StreamReader(cs)) return sr.ReadToEnd();
+            }
+            catch { return null; }
+        }
+    }
+} //{}

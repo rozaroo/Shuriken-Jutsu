@@ -425,6 +425,7 @@
 "Assets/Scripts/Audio/spatial-audio-source.cs"
 "Assets/Scripts/AudioMute.cs"
 "Assets/Scripts/Cloud/CloudSaveSystem.cs"
+"Assets/Scripts/EncryptedSaveSystem.cs"
 "Assets/Scripts/FloorMove.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/LogicaVolumen.cs"
