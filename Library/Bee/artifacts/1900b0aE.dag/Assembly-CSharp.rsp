@@ -434,6 +434,8 @@
 "Assets/Scripts/PlayerScore.cs"
 "Assets/Scripts/Rotate.cs"
 "Assets/Scripts/Score.cs"
+"Assets/Scripts/Screen/ResponsiveLayoutManager.cs"
+"Assets/Scripts/Screen/ScreenManager.cs"
 "Assets/Scripts/Shuriken.cs"
 "Assets/Scripts/ShurikenData.cs"
 "Assets/Scripts/ShurikenSelector.cs"

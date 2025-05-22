@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Audio\SimpleProceduralAudio.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\TestSequence.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\ScalerProfiles\ScalerProfileListItem.cs" />
+    <Compile Include="Assets\Scripts\Screen\ScreenManager.cs" />
     <Compile Include="Assets\Scripts\Trunk.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\SampleFactory.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\Bottleneck\BeeScript.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Assets\Scripts\Cloud\CloudSaveSystem.cs" />
     <Compile Include="Assets\Scripts\Audio\audio-manager.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\ScalerProfiles\ScalerProfileChanger.cs" />
+    <Compile Include="Assets\Scripts\Screen\ResponsiveLayoutManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
