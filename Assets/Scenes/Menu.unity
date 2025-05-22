@@ -216,6 +216,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1814168303}
   - {fileID: 1611113734}
   - {fileID: 985680087}
   - {fileID: 2068925004}
@@ -356,7 +357,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136754}
+      - m_Target: {fileID: 1814168305}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: ShowVolumeSlider
         m_Mode: 1
@@ -1645,7 +1646,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136754}
+      - m_Target: {fileID: 1814168305}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: ShowShurikens
         m_Mode: 1
@@ -1779,6 +1780,77 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1764198891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &540261884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 540261885}
+  - component: {fileID: 540261887}
+  - component: {fileID: 540261886}
+  m_Layer: 0
+  m_Name: MainMenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &540261885
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540261884}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -540, y: -960, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1954451691}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &540261886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540261884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987c4de884fcd274a9f46cb7b03d3058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
+  musicOn: {fileID: 1437462276}
+  musicOff: {fileID: 1672226307}
+--- !u!114 &540261887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540261884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448b49452694340408393353e4e4c48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreManager: {fileID: 576031634}
+  slider: {fileID: 113429285}
+  ShurikenSelector: {fileID: 1140694392}
+  BackButton: {fileID: 2038068795}
+  ShowButton: {fileID: 2030250068}
+  PlayButton: {fileID: 1567605535}
+  VolumeButton: {fileID: 1177280331}
+  ExitButton: {fileID: 1160154487}
+  cloud: {fileID: 2091513902}
+  playerNameText: {fileID: 1001016657}
+  bestScoreText: {fileID: 593973765}
 --- !u!1 &576031633
 GameObject:
   m_ObjectHideFlags: 0
@@ -2043,7 +2115,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136754}
+      - m_Target: {fileID: 1814168305}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -2175,7 +2247,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136756}
+      - m_Target: {fileID: 1814168304}
         m_TargetAssemblyTypeName: AudioMute, Assembly-CSharp
         m_MethodName: Mute
         m_Mode: 1
@@ -3572,7 +3644,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136754}
+      - m_Target: {fileID: 1814168305}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: Back
         m_Mode: 1
@@ -3704,7 +3776,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136754}
+      - m_Target: {fileID: 540261887}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: QuitGame
         m_Mode: 1
@@ -3881,7 +3953,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136754}
+      - m_Target: {fileID: 540261887}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: ShowVolumeSlider
         m_Mode: 1
@@ -4013,7 +4085,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136756}
+      - m_Target: {fileID: 1814168304}
         m_TargetAssemblyTypeName: AudioMute, Assembly-CSharp
         m_MethodName: Mute
         m_Mode: 1
@@ -4372,12 +4444,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411136752}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -540, y: -960, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1764198891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1411136756
 MonoBehaviour:
@@ -4608,7 +4680,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136756}
+      - m_Target: {fileID: 540261886}
         m_TargetAssemblyTypeName: AudioMute, Assembly-CSharp
         m_MethodName: Mute
         m_Mode: 1
@@ -5086,7 +5158,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136754}
+      - m_Target: {fileID: 540261887}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
@@ -5836,7 +5908,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136756}
+      - m_Target: {fileID: 540261886}
         m_TargetAssemblyTypeName: AudioMute, Assembly-CSharp
         m_MethodName: Mute
         m_Mode: 1
@@ -6232,6 +6304,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1411136755}
   - {fileID: 731443448}
   - {fileID: 508998770}
   - {fileID: 1536392249}
@@ -6245,6 +6318,7 @@ RectTransform:
   - {fileID: 1552969528}
   - {fileID: 321228089}
   - {fileID: 416539201}
+  - {fileID: 1862481250}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6327,6 +6401,77 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795515787}
   m_CullTransparentMesh: 1
+--- !u!1 &1814168302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1814168303}
+  - component: {fileID: 1814168305}
+  - component: {fileID: 1814168304}
+  m_Layer: 0
+  m_Name: MainMenuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1814168303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814168302}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -540, y: -960, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 14364405}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1814168304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814168302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 987c4de884fcd274a9f46cb7b03d3058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Audio: {fileID: 0}
+  musicOn: {fileID: 1252132844}
+  musicOff: {fileID: 691867050}
+--- !u!114 &1814168305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814168302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448b49452694340408393353e4e4c48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreManager: {fileID: 576031634}
+  slider: {fileID: 1998753619}
+  ShurikenSelector: {fileID: 1486437430}
+  BackButton: {fileID: 1146085302}
+  ShowButton: {fileID: 498783830}
+  PlayButton: {fileID: 2068925003}
+  VolumeButton: {fileID: 45745168}
+  ExitButton: {fileID: 689521148}
+  cloud: {fileID: 2091513902}
+  playerNameText: {fileID: 262806325}
+  bestScoreText: {fileID: 966882397}
 --- !u!1 &1862481248
 GameObject:
   m_ObjectHideFlags: 0
@@ -6366,12 +6511,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862481248}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0827084, y: -0.4863411, z: -0.032329068}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -538.9173, y: -960.4863, z: -0.032329068}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1764198891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1949688749
 GameObject:
@@ -6667,6 +6812,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 540261885}
   - {fileID: 1696492459}
   - {fileID: 1601268368}
   - {fileID: 1567605536}
@@ -7265,7 +7411,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136754}
+      - m_Target: {fileID: 540261887}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: ShowShurikens
         m_Mode: 1
@@ -7397,7 +7543,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136754}
+      - m_Target: {fileID: 540261887}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: Back
         m_Mode: 1
@@ -7529,7 +7675,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1411136754}
+      - m_Target: {fileID: 1814168305}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
         m_MethodName: Play
         m_Mode: 1
@@ -7708,13 +7854,11 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1311525939}
-  - {fileID: 1411136755}
   - {fileID: 1949688752}
   - {fileID: 1764198891}
   - {fileID: 576031635}
   - {fileID: 2091513903}
   - {fileID: 1992294178}
-  - {fileID: 1862481250}
   - {fileID: 796657151}
   - {fileID: 1170493312}
   - {fileID: 1448634598}
