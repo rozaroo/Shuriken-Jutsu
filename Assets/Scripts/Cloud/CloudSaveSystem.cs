@@ -24,8 +24,8 @@ public class CloudSaveSystem : MonoBehaviour
     public TextMeshProUGUI rankingText;
     
     // Datos del jugador
-    private string playerName = "Player";
-    private int score = 0;
+    private string playerName;
+    private int score;
     private int level = 1;
     
     // Estado de la nube
@@ -66,6 +66,7 @@ public class CloudSaveSystem : MonoBehaviour
             Debug.Log("Signed in anonymously");
         }
         isInitialized = true;
+        await LoadGameData();
         Debug.Log("Unity Services Initialized");
     }
     //Guardar nuevo puntaje
@@ -239,18 +240,14 @@ public class CloudSaveSystem : MonoBehaviour
         await LoadGameData();
     }
     
-    private async Task LoadGameData()
+    private async Task LoadGameData() //Desde aca debe cargar los datos
     {
-        if (!isInitialized || isLoading)
-            return;
-        
+        if (!isInitialized || isLoading) return;
         isLoading = true;
-        syncStatusText.text = "Cargando...";
-        
         try
         {
             // Definir las claves que queremos cargar
-            var keys = new HashSet<string> { "playerName", "score", "level", "lastSaved" };
+            var keys = new HashSet<string> { "playerName", "score" };
             
             // Cargar datos de Unity Cloud Save
             var data = await CloudSaveService.Instance.Data.Player.LoadAsync(keys);
@@ -273,21 +270,6 @@ public class CloudSaveSystem : MonoBehaviour
                     scoreText.text = "Puntaje: " + score; 
                 }
             }
-            
-            if (data.TryGetValue("level", out var levelValue))
-            {
-                level = levelValue.Value.GetAs<int>();
-                levelText.text = "Nivel: " + level;
-            }
-            
-            string lastSaved = "Nunca";
-            if (data.TryGetValue("lastSaved", out var lastSavedValue))
-            {
-                lastSaved = lastSavedValue.Value.GetAs<string>();
-            }
-            
-            syncStatusText.text = "Datos cargados (último guardado: " + lastSaved + ")";
-            Debug.Log("Datos cargados correctamente");
         }
         catch (System.Exception ex)
         {
@@ -400,5 +382,13 @@ public class CloudSaveSystem : MonoBehaviour
             }
             catch { return null; }
         }
+    }
+    public string GetPlayerName() 
+    { 
+        return playerName;
+    }
+    public int GetScore() 
+    {
+        return score;
     }
 } //{}

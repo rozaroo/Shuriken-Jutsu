@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -17,12 +19,21 @@ public class MainMenuManager : MonoBehaviour
     public GameObject ExitButton;
     private bool showSlider;
     private bool showShuriken;
+    public CloudSaveSystem cloud;
+    public TextMeshProUGUI playerNameText;
+    public TextMeshProUGUI bestScoreText;
     private async void Start()
     {
-        if (scoreManager != null) await scoreManager.DownloadAndShowBestScore();
-        else return;
         showSlider = false;
         showShuriken = false;
+        await Task.Delay(10);
+        if (cloud != null) 
+        {
+            string playerName = cloud.GetPlayerName();
+            int score = cloud.GetScore();
+            if (playerNameText != null) playerNameText.text = "PlayerName: "+ playerName;
+            if (bestScoreText != null) bestScoreText.text = "Score: " + score;
+        }
     }
     public void QuitGame()
     {
@@ -35,8 +46,7 @@ public class MainMenuManager : MonoBehaviour
     public void ShowVolumeSlider()
     {
         showSlider = !showSlider;
-        if (showSlider) slider.SetActive(false);
-        else slider.SetActive(true);
+        slider.SetActive(showSlider);
     }
     public void ShowShurikens()
     {
