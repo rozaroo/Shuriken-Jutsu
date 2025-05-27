@@ -27,6 +27,7 @@ public class CloudSaveSystem : MonoBehaviour
     private string playerName;
     private int score;
     private int level = 1;
+    public string leaderboardtext;
     
     // Estado de la nube
     private bool isInitialized = false;
@@ -67,6 +68,8 @@ public class CloudSaveSystem : MonoBehaviour
         }
         isInitialized = true;
         await LoadGameData();
+        await LoadLeaderboard();
+        DisplayLeaderboard();
         Debug.Log("Unity Services Initialized");
     }
     //Guardar nuevo puntaje
@@ -154,15 +157,15 @@ public class CloudSaveSystem : MonoBehaviour
     //Mostrar ranking en pantalla
     private void DisplayLeaderboard() 
     {
-        rankingText.text = "Top 5:\n";
-        int rank = 1;
-        foreach (var entry in leaderboard)
+        leaderboardtext = ""; // Limpia el texto anterior
+        foreach (var entry in leaderboard) 
         {
             string decryptedName = DecryptData(Convert.FromBase64String(entry.playerName), secretKey);
             string decryptedScore = DecryptData(Convert.FromBase64String(entry.score), secretKey);
-            rankingText.text += $"{rank}. {decryptedName} - {decryptedScore}\n";
-            rank++;
+            if (!string.IsNullOrEmpty(decryptedName) && !string.IsNullOrEmpty(decryptedScore) && leaderboardtext != null) leaderboardtext += $"{decryptedName} - {decryptedScore}\n";
+            else leaderboardtext += $"[Datos corruptos o mal encriptados]\n";
         }
+        rankingText.text = leaderboardtext;
     }
     //Wrapper para serializar listas con JsonUtility 
     [Serializable]
