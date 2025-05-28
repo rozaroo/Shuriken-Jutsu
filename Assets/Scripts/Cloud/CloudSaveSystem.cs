@@ -27,7 +27,7 @@ public class CloudSaveSystem : MonoBehaviour
     private string playerName;
     private int score;
     private int level = 1;
-    public string leaderboardtext;
+    public TextMeshProUGUI leaderboardtext;
     
     // Estado de la nube
     private bool isInitialized = false;
@@ -129,7 +129,7 @@ public class CloudSaveSystem : MonoBehaviour
     {
         if (!isInitialized || isLoading) return;
         isLoading = true;
-        syncStatusText.text = "Cargando ranking...";
+        //syncStatusText.text = "Cargando ranking...";
         try 
         {
             var keys = new HashSet<string> { leaderboardKey };
@@ -140,13 +140,13 @@ public class CloudSaveSystem : MonoBehaviour
                 //Deserializar JSON
                 PlayerScoreListWrapper wrapper = JsonUtility.FromJson<PlayerScoreListWrapper>(jsonData);
                 leaderboard = wrapper?.scores ?? new List<PlayerScore>();
-                syncStatusText.text = "Ranking cargado.";
+                //syncStatusText.text = "Ranking cargado.";
                 Debug.Log("Leaderboard cargado.");
             }
         }
         catch (Exception ex) 
         {
-            syncStatusText.text = "Error al cargar: " + ex.Message;
+            //syncStatusText.text = "Error al cargar: " + ex.Message;
             Debug.LogError("Error al cargar leaderboard: "+ ex);
         }
         finally 
@@ -157,15 +157,14 @@ public class CloudSaveSystem : MonoBehaviour
     //Mostrar ranking en pantalla
     private void DisplayLeaderboard() 
     {
-        leaderboardtext = ""; // Limpia el texto anterior
+        leaderboardtext.text = ""; // Limpia el texto anterior
         foreach (var entry in leaderboard) 
         {
             string decryptedName = DecryptData(Convert.FromBase64String(entry.playerName), secretKey);
             string decryptedScore = DecryptData(Convert.FromBase64String(entry.score), secretKey);
-            if (!string.IsNullOrEmpty(decryptedName) && !string.IsNullOrEmpty(decryptedScore) && leaderboardtext != null) leaderboardtext += $"{decryptedName} - {decryptedScore}\n";
-            else leaderboardtext += $"[Datos corruptos o mal encriptados]\n";
+            if (!string.IsNullOrEmpty(decryptedName) && !string.IsNullOrEmpty(decryptedScore) && leaderboardtext != null) leaderboardtext.text += $"{decryptedName} - {decryptedScore}\n";
+            else leaderboardtext.text += $"[Datos corruptos o mal encriptados]\n";
         }
-        rankingText.text = leaderboardtext;
     }
     //Wrapper para serializar listas con JsonUtility 
     [Serializable]

@@ -16,8 +16,8 @@ public class ResponsiveLayoutManager : MonoBehaviour
     private void UpdateLayout()
     {
         float screenWidth = Screen.width;
-        smallScreenLayout.SetActive(screenWidth < 1280);
-        mediumScreenLayout.SetActive(screenWidth >= 1280 && screenWidth < 1920);
+        smallScreenLayout.SetActive(screenWidth < 1100);
+        mediumScreenLayout.SetActive(screenWidth >= 1100 && screenWidth < 1920);
         largeScreenLayout.SetActive(screenWidth >= 1920);
     }
 }
