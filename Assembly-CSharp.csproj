@@ -62,6 +62,8 @@
     <Compile Include="Assets\Scripts\TrunkSpawner.cs" />
     <Compile Include="Assets\Scripts\MusicPlayer.cs" />
     <Compile Include="Assets\Scripts\Audio\spatial-audio-source.cs" />
+    <Compile Include="Assets\Scripts\Analytics\PersistantTimerData.cs" />
+    <Compile Include="Assets\Scripts\Analytics\AnalyticsEvents.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\AutoPerfControl.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\Scaler\IndexerVisualisation.cs" />
     <Compile Include="Assets\Scripts\ShurikenData.cs" />
@@ -96,11 +98,13 @@
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\Blockwall\ObjectSpawner.cs" />
     <Compile Include="Assets\Scripts\Rotate.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\Boost\BoostUI.cs" />
+    <Compile Include="Assets\Scripts\Analytics\PersistantData.cs" />
     <Compile Include="Assets\Scripts\Audio\audio-settings-ui.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\SpinLoad.cs" />
     <Compile Include="Assets\Scripts\Cloud\CloudSaveSystem.cs" />
     <Compile Include="Assets\Scripts\Audio\audio-manager.cs" />
     <Compile Include="Assets\Samples\Adaptive Performance\4.0.1\Environment\ScalerProfiles\ScalerProfileChanger.cs" />
+    <Compile Include="Assets\Scripts\Analytics\AnalyticsManager.cs" />
     <Compile Include="Assets\Scripts\Screen\ResponsiveLayoutManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1149,6 +1153,10 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Services.Analytics">
+      <HintPath>Library\ScriptAssemblies\Unity.Services.Analytics.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.InternalAPIEditorBridge.001">

@@ -1764,6 +1764,7 @@ MonoBehaviour:
   PlayButton: {fileID: 1567605535}
   VolumeButton: {fileID: 1177280331}
   ExitButton: {fileID: 1160154487}
+  userId: 
 --- !u!1 &576031633
 GameObject:
   m_ObjectHideFlags: 0
@@ -4078,6 +4079,7 @@ MonoBehaviour:
   PlayButton: {fileID: 1536392248}
   VolumeButton: {fileID: 1387645715}
   ExitButton: {fileID: 1951757930}
+  userId: 
 --- !u!4 &1411136755
 Transform:
   m_ObjectHideFlags: 0
@@ -6111,6 +6113,7 @@ MonoBehaviour:
   PlayButton: {fileID: 2068925003}
   VolumeButton: {fileID: 45745168}
   ExitButton: {fileID: 689521148}
+  userId: 
 --- !u!1 &1862481248
 GameObject:
   m_ObjectHideFlags: 0
@@ -7464,6 +7467,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1764198891}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2105097909
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2105097911}
+  - component: {fileID: 2105097910}
+  m_Layer: 0
+  m_Name: Analytics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2105097910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105097909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bd946d17b9ccd142a07bcd4a42d86e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2105097911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2105097909}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6424297, y: 0.04940848, z: -9.943655}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2107421084
 GameObject:
   m_ObjectHideFlags: 0
@@ -7554,3 +7601,4 @@ SceneRoots:
   - {fileID: 201419570}
   - {fileID: 14364405}
   - {fileID: 1954451691}
+  - {fileID: 2105097911}

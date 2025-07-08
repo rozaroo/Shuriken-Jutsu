@@ -18,7 +18,29 @@ public class MainMenuManager : MonoBehaviour
     public GameObject ExitButton;
     private bool showSlider;
     private bool showShuriken;
-    
+    public static MainMenuManager Instance { get; private set; }
+    public string userId;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Solo si quieres que persista
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+        if (PlayerPrefs.HasKey("UserId")) userId = PlayerPrefs.GetString("UserId");
+        else
+        {
+            userId = Guid.NewGuid().ToString();
+            PlayerPrefs.SetString("UserId", userId);
+        }
+    }
+
     private async void Start()
     {
         showSlider = false;
