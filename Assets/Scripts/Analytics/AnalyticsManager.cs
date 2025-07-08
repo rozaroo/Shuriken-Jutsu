@@ -24,13 +24,19 @@ public class AnalyticsManager : MonoBehaviour
     {
         try
         {
-            await UnityServices.InitializeAsync();
+            if (UnityServices.State != ServicesInitializationState.Initialized &&
+                UnityServices.State != ServicesInitializationState.Initializing)
+            {
+                await UnityServices.InitializeAsync();
+            }
+
             GiveConsent();
         }
         catch (Exception e)
         {
             Debug.LogError(e);
         }
+
     }
 
 
