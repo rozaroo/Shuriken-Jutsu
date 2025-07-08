@@ -8,6 +8,7 @@ public class ShurikenSelectedEvent : Unity.Services.Analytics.Event
     }
     public int Index { set { SetParameter("index", value); } }
     public string usuario_identified { set { SetParameter("usuario_identified", value); } }
+    public int Count { set { SetParameter("Count", value); } }
 }
 
 

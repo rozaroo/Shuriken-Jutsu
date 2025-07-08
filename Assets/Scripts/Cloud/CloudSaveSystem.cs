@@ -60,12 +60,7 @@ public class CloudSaveSystem : MonoBehaviour
 
     private async void InitializeUnityServices()
     {
-        await UnityServices.InitializeAsync();
-        if (!AuthenticationService.Instance.IsSignedIn) 
-        {
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
-            Debug.Log("Signed in anonymously");
-        }
+        await UnityServiceManager.InitializeAsync();
         isInitialized = true;
         await LoadGameData();
         await LoadLeaderboard();

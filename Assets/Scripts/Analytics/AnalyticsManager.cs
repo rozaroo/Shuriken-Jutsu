@@ -24,19 +24,13 @@ public class AnalyticsManager : MonoBehaviour
     {
         try
         {
-            if (UnityServices.State != ServicesInitializationState.Initialized &&
-                UnityServices.State != ServicesInitializationState.Initializing)
-            {
-                await UnityServices.InitializeAsync();
-            }
-
+            await UnityServiceManager.InitializeAsync();
             GiveConsent();
         }
         catch (Exception e)
         {
             Debug.LogError(e);
         }
-
     }
 
 
@@ -47,12 +41,13 @@ public class AnalyticsManager : MonoBehaviour
     }
 
   
-    public void ShurikenSelected(int index, string user_id) 
+    public void ShurikenSelected(int index, string user_id, int count) 
     {
         ShurikenSelectedEvent evt = new ShurikenSelectedEvent
         {
             Index = index,
-            usuario_identified = user_id
+            usuario_identified = user_id,
+            Count = count
         };
         AnalyticsService.Instance.RecordEvent(evt);
         AnalyticsService.Instance.Flush();

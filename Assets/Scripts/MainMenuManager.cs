@@ -23,16 +23,16 @@ public class MainMenuManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject); // Solo si quieres que persista
-        }
-        else
-        {
-            Destroy(gameObject);
-            return;
-        }
+        //if (Instance == null)
+        //{
+            //Instance = this;
+            //DontDestroyOnLoad(gameObject); // Solo si quieres que persista
+        //}
+        //else
+        //{
+            //Destroy(gameObject);
+            //return;
+        //}
         if (PlayerPrefs.HasKey("UserId")) userId = PlayerPrefs.GetString("UserId");
         else
         {
