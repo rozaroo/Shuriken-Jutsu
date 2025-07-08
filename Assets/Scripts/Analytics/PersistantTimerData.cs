@@ -22,11 +22,18 @@ public class PersistantTimerData : MonoBehaviour
     {
         if (isRunning) timer += Time.deltaTime;
     }
+    // Función para detener timer y subir datos
     public void UploadData()
     {
-        // Obtener el user_id desde el GameManager
-        //string userId = GameManager.Instance.userId;
-        //isRunning = false;
-        //AnalyticsManager.instance.gameFinished(timer, userId);
+        isRunning = false;
+        MainMenuManager menuManager = FindObjectOfType<MainMenuManager>();
+        string userId = menuManager.userId;
+        if (string.IsNullOrEmpty(userId))
+        {
+            Debug.LogWarning("[PersistantTimerData] No se encontró userId para subir datos.");
+            return;
+        }
+        AnalyticsManager.Instance?.gameFinished(timer, userId);
+        Debug.Log($"[PersistantTimerData] Tiempo total jugado: {timer} segundos, usuario: {userId}");
     }
 }

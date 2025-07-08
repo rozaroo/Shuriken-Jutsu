@@ -20,6 +20,7 @@ public class MainMenuManager : MonoBehaviour
     private bool showShuriken;
     public static MainMenuManager Instance { get; private set; }
     public string userId;
+    public GameObject timerDataPrefab;
 
     private void Awake()
     {
@@ -43,12 +44,22 @@ public class MainMenuManager : MonoBehaviour
 
     private async void Start()
     {
+        if (FindObjectOfType<PersistantTimerData>() == null) Instantiate(timerDataPrefab);
         showSlider = false;
         showShuriken = false;
     }
     public void QuitGame()
     {
-        Application.Quit();
+        if (PersistantTimerData.Instance != null)
+        {
+            PersistantTimerData.Instance.UploadData();
+            StartCoroutine(QuitAfterDelay(0.5f));
+        }
+        else
+        {
+            Debug.LogWarning("PersistantTimerData no encontrado al salir.");
+            Application.Quit();
+        } 
     }
     public void Play()
     {
@@ -76,5 +87,10 @@ public class MainMenuManager : MonoBehaviour
         ExitButton.SetActive(true);
         BackButton.SetActive(false);
         ShowButton.SetActive(true);
+    }
+    private IEnumerator QuitAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Application.Quit();
     }
 }
