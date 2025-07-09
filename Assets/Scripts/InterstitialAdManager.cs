@@ -23,7 +23,7 @@ public class InterstitialAdManager : MonoBehaviour, IUnityAdsShowListener
     }
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState) 
     {
-        if (placementId == adUnitId && showCompletionState == UnityAdsShowCompletionState) SceneManager.LoadScene(nextSceneIndex);
+        if (placementId == adUnitId && showCompletionState == UnityAdsShowCompletionState.COMPLETED) SceneManager.LoadScene(nextSceneIndex);
     }
     public void OnUnityAdsShowStart(string placementId) {}
     public void OnUnityAdsShowClick(string placementId) {}
