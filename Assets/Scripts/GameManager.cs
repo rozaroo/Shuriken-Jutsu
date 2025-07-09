@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public Sprite[] shurikenSprites;
     public Transform SpawnPoint;
+    public InterstitialAdManager adManager;
 
     void Start() 
     {
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour
     public void MainMenu() 
     {
         score.EndGame();
-        SceneManager.LoadScene(0);
+        adManager.ShowAdAndLoadScene(0);
     }
 }
 
