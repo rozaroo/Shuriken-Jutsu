@@ -152,14 +152,17 @@ public class CloudSaveSystem : MonoBehaviour
     //Mostrar ranking en pantalla
     private void DisplayLeaderboard() 
     {
-        leaderboardtext.text = ""; // Limpia el texto anterior
-        foreach (var entry in leaderboard) 
+        if (leaderboardtext != null) 
         {
+            leaderboardtext.text = ""; // Limpia el texto anterior
+            foreach (var entry in    leaderboard) 
+           {
             string decryptedName = DecryptData(Convert.FromBase64String(entry.playerName), secretKey);
             string decryptedScore = DecryptData(Convert.FromBase64String(entry.score), secretKey);
             if (!string.IsNullOrEmpty(decryptedName) && !string.IsNullOrEmpty(decryptedScore) && leaderboardtext != null) leaderboardtext.text += $"{decryptedName} - {decryptedScore}\n";
             else leaderboardtext.text += $"[Datos corruptos o mal encriptados]\n";
-        }
+           }
+         }
     }
     //Wrapper para serializar listas con JsonUtility 
     [Serializable]
