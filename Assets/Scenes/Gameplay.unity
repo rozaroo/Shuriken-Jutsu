@@ -1020,6 +1020,7 @@ MonoBehaviour:
   levelText: {fileID: 1146399830}
   syncStatusText: {fileID: 1145887990}
   rankingText: {fileID: 1965581406}
+  leaderboardtext: {fileID: 0}
 --- !u!4 &688916014
 Transform:
   m_ObjectHideFlags: 0
@@ -1639,6 +1640,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1186599676}
   m_CullTransparentMesh: 1
+--- !u!1 &1328615458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1328615461}
+  - component: {fileID: 1328615460}
+  - component: {fileID: 1328615459}
+  m_Layer: 0
+  m_Name: AdManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1328615459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328615458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad587521a1fad847a46cd2d33a8352e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  androidGameId: 5897123
+  testMode: 1
+--- !u!114 &1328615460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328615458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c2301744db1dd4997dd765d7cf8dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  androidAdUnitId: Interstitial_Android
+--- !u!4 &1328615461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328615458}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6424297, y: 0.04940848, z: -9.943655}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1378359337
 GameObject:
   m_ObjectHideFlags: 0
@@ -3030,6 +3091,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ea02e2a0cb5f4e04ea661e1fa8df1f79, type: 3}
   - {fileID: 21300000, guid: a7f59317da408ec4c832b86149da9401, type: 3}
   SpawnPoint: {fileID: 1828334182}
+  adManager: {fileID: 1328615460}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -3045,3 +3107,4 @@ SceneRoots:
   - {fileID: 688916014}
   - {fileID: 434309549}
   - {fileID: 1828334182}
+  - {fileID: 1328615461}

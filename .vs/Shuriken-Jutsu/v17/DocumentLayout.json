@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\Analytics\\PersistantTimerData.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Analytics\\PersistantTimerData.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\UnityAdsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\UnityAdsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\Analytics\\AnalyticsEvents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Analytics\\AnalyticsEvents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\InterstitialAdManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\InterstitialAdManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\Analytics\\AnalyticsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Analytics\\AnalyticsManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\MainMenuManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\MainMenuManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\Cloud\\CloudSaveSystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\Cloud\\CloudSaveSystem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,68 +22,44 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CloudSaveSystem.cs",
-              "DocumentMoniker": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\Cloud\\CloudSaveSystem.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Cloud\\CloudSaveSystem.cs",
-              "ToolTip": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\Cloud\\CloudSaveSystem.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Cloud\\CloudSaveSystem.cs",
-              "ViewState": "AgIAAIAAAAAAAAAAAAAwwJoAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameManager.cs",
+              "ToolTip": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T18:31:08.183Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "MainMenuManager.cs",
-              "DocumentMoniker": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\MainMenuManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\MainMenuManager.cs",
-              "ToolTip": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\MainMenuManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\MainMenuManager.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAuwGAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T18:13:00.59Z"
+              "WhenOpened": "2025-07-10T16:02:56.45Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AnalyticsEvents.cs",
-              "DocumentMoniker": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\Analytics\\AnalyticsEvents.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Analytics\\AnalyticsEvents.cs",
-              "ToolTip": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\Analytics\\AnalyticsEvents.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Analytics\\AnalyticsEvents.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAsAAAAAAAAAA==",
+              "Title": "InterstitialAdManager.cs",
+              "DocumentMoniker": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\InterstitialAdManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\InterstitialAdManager.cs",
+              "ToolTip": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\InterstitialAdManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\InterstitialAdManager.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAIBJwA0AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T18:12:36.513Z",
+              "WhenOpened": "2025-07-10T15:58:27.928Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AnalyticsManager.cs",
-              "DocumentMoniker": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\Analytics\\AnalyticsManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Analytics\\AnalyticsManager.cs",
-              "ToolTip": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\Analytics\\AnalyticsManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Analytics\\AnalyticsManager.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAuwEIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T18:12:31.611Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PersistantTimerData.cs",
-              "DocumentMoniker": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\Analytics\\PersistantTimerData.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Analytics\\PersistantTimerData.cs",
-              "ToolTip": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\Analytics\\PersistantTimerData.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Analytics\\PersistantTimerData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAjAAAAAAAAAA==",
+              "Title": "UnityAdsManager.cs",
+              "DocumentMoniker": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\UnityAdsManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\UnityAdsManager.cs",
+              "ToolTip": "C:\\Users\\alu765\\Documents\\GitHub\\Shuriken-Jutsu\\Assets\\Scripts\\UnityAdsManager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\UnityAdsManager.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAUAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-08T18:12:17.838Z",
+              "WhenOpened": "2025-07-10T15:57:21.848Z",
               "EditorCaption": ""
             }
           ]
